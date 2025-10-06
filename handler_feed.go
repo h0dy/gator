@@ -18,19 +18,19 @@ func handlerAddFeed(st *state, cmd command, user database.User) error {
 	feedName := cmd.Arg[0]
 	feedURL := cmd.Arg[1]
 	feed, err := st.db.CreateFeed(context.Background(), database.CreateFeedParams{
-		ID: 	   uuid.New(),
+		ID:        uuid.New(),
 		CreatedAt: time.Now().UTC(),
 		UpdatedAt: time.Now().UTC(),
-		Name: feedName,
-		Url: feedURL,
-		UserID:user.ID,
+		Name:      feedName,
+		Url:       feedURL,
+		UserID:    user.ID,
 	})
 	if err != nil {
 		return fmt.Errorf("couldn't create feed: %v", err)
 	}
 
 	feedFollow, err := st.db.CreateFeedFollow(context.Background(), database.CreateFeedFollowParams{
-		ID: 	   uuid.New(),
+		ID:        uuid.New(),
 		CreatedAt: time.Now().UTC(),
 		UpdatedAt: time.Now().UTC(),
 		UserID:    user.ID,
@@ -57,7 +57,7 @@ func handlerListFeeds(st *state, cmd command) error {
 		fmt.Println("No feeds found ☹️\nuse addfeed <name> <url> command to add feeds.")
 		return nil
 	}
-	
+
 	logFeeds(feeds)
 	return nil
 }
@@ -72,9 +72,9 @@ func logFeeds(feeds []database.GetAllFeedsRow) {
 }
 
 func logFeed(feed database.Feed) {
-	fmt.Printf("Feed details:\nFeed ID: %v\nFeed Name: %v\nFeed URL: %v\n", 
-	feed.ID,
-	feed.Name,
-	feed.Url,
+	fmt.Printf("Feed details:\nFeed ID: %v\nFeed Name: %v\nFeed URL: %v\n",
+		feed.ID,
+		feed.Name,
+		feed.Url,
 	)
 }

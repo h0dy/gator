@@ -5,7 +5,7 @@ import "errors"
 // command struct hold the name of the command and its arguments
 type command struct {
 	Name string
-	Arg []string
+	Arg  []string
 }
 
 type commands struct {
@@ -15,8 +15,8 @@ type commands struct {
 // run func runs a given command with the provided state if it exists
 func (c *commands) run(st *state, cmd command) error {
 	// get the command and check if it exists
-	cmdFunc, ok := c.cmds[cmd.Name] 
-	if !ok  {
+	cmdFunc, ok := c.cmds[cmd.Name]
+	if !ok {
 		return errors.New("the given command isn't registered")
 	}
 	if err := cmdFunc(st, cmd); err != nil {

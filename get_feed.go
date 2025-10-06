@@ -41,7 +41,7 @@ func fetchFeed(ctx context.Context, feedURL string) (*RSSFeed, error) {
 		return nil, err
 	}
 	defer res.Body.Close()
-	
+
 	data, err := io.ReadAll(res.Body)
 	if err != nil {
 		return nil, err

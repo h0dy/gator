@@ -18,7 +18,7 @@ func handlerLogin(st *state, cmd command) error {
 
 	user, err := st.db.GetUser(context.Background(), username)
 	if err != nil {
-		return fmt.Errorf("\ncouldn't get the user: %v", err) 
+		return fmt.Errorf("\ncouldn't get the user: %v", err)
 	}
 
 	if err := st.cfg.SetUser(user.Name); err != nil {
@@ -37,7 +37,7 @@ func handlerRegister(st *state, cmd command) error {
 
 	username := cmd.Arg[0]
 	user, err := st.db.CreateUser(context.Background(), database.CreateUserParams{
-		ID: 	   uuid.New(),
+		ID:        uuid.New(),
 		CreatedAt: time.Now().UTC(),
 		UpdatedAt: time.Now().UTC(),
 		Name:      username,
@@ -73,8 +73,9 @@ func handlerListUsers(st *state, cmd command) error {
 func logUser(user database.User) {
 	fmt.Printf("USER ID: %v\nUSER Name:%v\n", user.ID, user.Name)
 }
+
 // handlerLogUser func log current user
-func handlerLogUser(st *state, cmd command, user database.User)error {
+func handlerLogUser(st *state, cmd command, user database.User) error {
 	logUser(user)
 	return nil
 }

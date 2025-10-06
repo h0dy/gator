@@ -7,20 +7,20 @@ import (
 
 // Config struct holds a json file
 type Config struct {
-	DbURL  			string `json:"db_url"` // database connection
+	DbURL           string `json:"db_url"`            // database connection
 	CurrentUsername string `json:"current_user_name"` // current active user
 }
 
 // ReadConfigFile func reads the config from the json file and return it as Config struct
 func ReadConfigFile() (Config, error) {
 	// get the full path for the config
-	filePath, err := getConfigFilePath() 
+	filePath, err := getConfigFilePath()
 	if err != nil {
 		return Config{}, err
 	}
 
 	// open the config file
-	file, err := os.Open(filePath) 
+	file, err := os.Open(filePath)
 	if err != nil {
 		return Config{}, err
 	}
@@ -33,7 +33,7 @@ func ReadConfigFile() (Config, error) {
 	if err := decoder.Decode(&config); err != nil {
 		return Config{}, err
 	}
-	
+
 	return config, nil
 }
 
@@ -62,7 +62,7 @@ func write(cfg *Config) error {
 	if err := encoder.Encode(cfg); err != nil {
 		return err
 	}
-	
+
 	return nil
 }
 

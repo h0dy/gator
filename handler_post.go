@@ -20,7 +20,7 @@ func handlerPosts(st *state, cmd command, user database.User) error {
 	}
 	posts, err := st.db.GetPosts(context.Background(), database.GetPostsParams{
 		UserID: user.ID,
-		Limit: postLimit,
+		Limit:  postLimit,
 	})
 	if len(posts) < 1 {
 		fmt.Printf("There are no posts for user: %v", user.Name)

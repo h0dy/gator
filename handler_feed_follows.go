@@ -22,7 +22,7 @@ func handlerFollowFeed(st *state, cmd command, user database.User) error {
 	}
 
 	feedFollowed, err := st.db.CreateFeedFollow(context.Background(), database.CreateFeedFollowParams{
-		ID: 	   uuid.New(),
+		ID:        uuid.New(),
 		CreatedAt: time.Now().UTC(),
 		UpdatedAt: time.Now().UTC(),
 		UserID:    user.ID,
@@ -52,7 +52,7 @@ func handlerFollowingFeeds(st *state, cmd command, user database.User) error {
 		fmt.Printf("Feed name: %v\n", f.FeedName)
 		fmt.Printf("Feed URL: %v\n", f.FeedUrl)
 	}
-	
+
 	return nil
 }
 
